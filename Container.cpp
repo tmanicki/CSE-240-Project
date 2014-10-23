@@ -1,4 +1,10 @@
 #include "Game.cpp"
 class Container{
-    Game g1();
+private:
+    Container *next;
+public:
+	Game game;
+	Container(){
+		next = 0;
+	}
 };
