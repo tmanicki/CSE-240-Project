@@ -7,4 +7,10 @@ public:
 	Container(){
 		next = 0;
 	}
+
+	void setNext(Container *ptr);
 };
+
+void Container::setNext(Container *ptr){
+	next = ptr;
+}
