@@ -49,6 +49,7 @@ public:
     void setGenre(string genreString);
     float avgScore(float s1, float s2, float s3);
     void setConsole(string s);
+    string getName();
     //enum Genre getGenre();
     /*float avgScore(float s1, float s2, float s3){
         if (g == Action)
@@ -64,6 +65,10 @@ public:
     };
     */
 };
+
+string Game::getName(){
+    return name;
+}
 
 float Game::avgScore(float s1, float s2, float s3){
     return ((s1*s2*s3)/3.0);
