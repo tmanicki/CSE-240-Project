@@ -10,7 +10,6 @@
 using namespace std;
 
 void ReadGameInfo();
-void ReadGame();
 void ReadScore();
 
 Container *HEAD = new Container();
@@ -21,33 +20,12 @@ int main(){
 	HEAD->game.setName("Head of container linked list");
     //Game g1;
     // calls to Team Members 2 and 3 functions
-    ReadGame();
+    ReadGameInfo();
     ReadScore();
 
     return 0;
 }
 
-
-void ReadGame(){
-	char choice;
-	do{
-		cout << "Select parsing method" << endl;
-		//cout << "(1) For using getline with delimeters" << endl;
-		cout << "(2) For using line parser" << endl;
-		cout << "(0) To quit" << endl;
-
-		choice = getc(stdin);
-		cout << "\n";
-		if (choice == '2')
-			ReadGameInfo();
-		else
-		{
-			cout << "Incorrect input\n" << endl;
-			cin.ignore();
-		}
-
-	} while (choice != '0');
-}
 /*
 	By: Timothy Manicki
 	Description:
@@ -79,25 +57,24 @@ void ReadGameInfo()
 
 			console = input.substr(0, input.find(delimeter));
 			input.erase(0, input.find(delimeter) + delimeter.length());
-
-			temp->game.setName(name);
-			temp->game.setGenre(genre);
-			temp->game.setConsole(console);
-
-			if (HEAD->game.getName() == "Head of container linked list"){
-				HEAD = temp;
-				HEAD->setNext(0);
-			}
-
-			else{
-				HEAD->setNext((Container *)temp);
-				temp->setNext(0);
-			}
-
-
 			
 			if (checker == 1)//skips initial input (i.e. game, genre, and console input from cvs file)
 			{
+				temp->game.setName(name);
+				temp->game.setGenre(genre);
+				temp->game.setConsole(console);
+
+				if (HEAD->game.getName() == "Head of container linked list")
+				{
+					HEAD = temp;
+					HEAD->setNext(0);
+				}
+
+				else
+				{
+					HEAD->setNext((Container *)temp);
+					temp->setNext(0);
+				}
 				cout << "Name: " << name << endl;
 				cout << "Genre: " << genre << endl;
 				cout << "Console: " << console << "\n" << endl;
@@ -112,8 +89,8 @@ void ReadGameInfo()
 	}
 	else
 		cout << "Unable to open file" << endl;	// Consumes extra newline character at end
-
-	cin.ignore();
+	fflush(stdin);
+	//cin.ignore();
 };
 
 void ReadScore() {
